@@ -7,3 +7,18 @@ before_install:
 
 script:
   - docker run dhmadan/docker-react npm run test -- --coverage
+
+deploy:
+   provider: elasticbeanstalk
+   region: "us-east-1"
+   app: "docker"
+   env: "Docker-env"
+   bucket_name: "elasticbeanstalk-us-east-1-039654170021"
+   bucket-path: "docker"
+   on:
+     branch: master
+   access_key_id: $AWS_ACCESS_KEY
+   secret_access_key:
+     secure: "$AWS_SECRET_KEY"
+
+
